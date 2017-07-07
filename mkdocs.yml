@@ -69,6 +69,7 @@ pages:
 #     - Metagenomics WGA: modules/metagenomics-module-wga/wga.md
 
 - Metagenomics Modules:
+    - Introduction to Command Line: modules/metagenomics-module-cli/commandline.md
     - Metagenomics QC: modules/metagenomics-module-qc/ngs-qc.md
     - Metagenomics Taxonomic: modules/metagenomics-module-tax/tax.md
     - Metagenomics mining EMG with R:
