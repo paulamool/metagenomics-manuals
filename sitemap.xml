@@ -38,6 +38,12 @@
     
         
     <url>
+     <loc>/modules/metagenomics-module-cli/commandline/</loc>
+     <lastmod>2017-07-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/modules/metagenomics-module-qc/ngs-qc/</loc>
      <lastmod>2017-07-07</lastmod>
      <changefreq>daily</changefreq>
