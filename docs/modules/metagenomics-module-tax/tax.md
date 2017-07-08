@@ -9,12 +9,11 @@ After completing this practical the trainee should be able to:
 
 -   Perform a taxonomic analysis on a 16S rRNA amplicon dataset
 
--   Conduct 16S taxonomic analysis on shotgun data
 
 ##Resources you will be using
 -------------------------
 
-### Tools Used: Part 1. 16S Analysis 
+### Tools Used 16S Analysis 
 
 
 QIIME :  http://qiime.org/
@@ -31,13 +30,6 @@ SortMeRNA: http://bioinfo.lifl.fr/RNA/sortmerna/
 
 STAMP: http://kiwi.cs.dal.ca/Software/STAMP
 
-### Tools Used: Part 2. 16S analysis of whole genome shotgun sequencing
-
-rRNASelector :   http://www.ezbiocloud.net/sw/rrnaselector
-
-MEGAN6 : http://ab.inf.uni-tuebingen.de/software/megan6
-
-
 ###Useful Links
 ------------
 
@@ -51,12 +43,9 @@ http://qiime.org/tutorials/tutorial.html
 16S Tutorials:
 https://github.com/mlangill/microbiome_helper/wiki/16S-tutorial-(chemerin)
 
-Lee et al. (2011). rRNASelector: a computer program for selecting ribosomal RNA encoding sequences from metagenomic and metatranscriptomic shotgun libraries. J. Microbiol. 49(4):689-691.
 
 ### Sources of Data
 ---
-
-### Part 1: 16S Analysis
 
 - Data : Mouse gut microbial composition affected by the protein chemerin.  https://www.dropbox.com/s/4fqgi6t3so69224/Sinal_Langille_raw_data.tar.gz
 https://www.dropbox.com/s/r2jqqc7brxg4jhx/16S_chemerin_tutorial.zip
@@ -64,18 +53,13 @@ https://www.dropbox.com/s/r2jqqc7brxg4jhx/16S_chemerin_tutorial.zip
 - RDP_trainset16_022016.fa (20 MB) is a subset of the Ribosome Database Project (RDP) filtered to include only bacteria.
 https://www.dropbox.com/s/qnlsv7ve2lg6qfp/RDP_trainset16_022016.fa?dl=1 
 
-### Part 2: 16S analysis of whole genome shotgun sequencing
-
--   Li et al. (2013). Draft Genome Sequence of Thermoanaerobacter sp. Strain A7A, Reconstructed from a Metagenome Obtained from a High-Temperature Hydrocarbon Reservoir in the Bass Strait, Australia. Genome Announc. 1(5): e00701-13.
 
 ### Overview
 ------------
 
 In this tutorial we will look at the open source software package QIIME (pronounced ’chime’). QIIME stands for Quantitative Insights Into Microbial Ecology. The package contains many tools that enable users to analyse and compare microbial communities. 
 
-After completion of this tutorial, you should be able to perform a taxonomic analysis on a Illumina pair end 16S rRNA amplicon dataset. In addition you should be able to do 16S rRNA taxonomic analysis on shotgun data using the tool rRNASelector in combination with QIIME and other third party tools.
-
-### _Part 1: 16S Analysis_
+After completion of this tutorial, you should be able to perform a taxonomic analysis on a Illumina pair end 16S rRNA amplicon dataset
 
 ###De novo OTU picking and diversity analysis using Illumina data
 ---
@@ -95,8 +79,6 @@ The workflow for 16S analysis in general is as follows:
 9. Beta diversity analysis and Taxonomic composition
 10. PCA analysis
  
-
-
 
 16S analysis is a method of microbiome analysis (compared to shotgun metagenomics) that targets the 16S ribosomal RNA gene, as this gene is present in all prokaryotes. It features regions that are conserved among these organisms, as well as variable regions that allow distinction among organisms. These characteristics make this gene useful for analyzing microbial communities at reduced cost compared to metagenomic techniques. A similar workflow can be applied to eukaryotic micro-organisms using the 18S rRNA gene.
 
@@ -170,6 +152,9 @@ The default log file "pear_summary_log.txt" contains the percent of reads either
 
 !!! note "Question 1" 
     What percent of reads were successfully stitched for sample 40CMK6WT?
+    
+!!! success "Answer"
+    96.2%
 
 ###Filtering reads by quality and length
 
@@ -188,6 +173,9 @@ If you look in this logfile you will note that ~40% of reads were filtered out f
 
 !!! note "Question 2"
     How many reads of sample 36CMK6WT were filtered out for not containing a match to the forward primer (which is the default setting in this case).
+    
+!!! success "Answer"
+    88.96%
 
 ###Conversion to FASTA and removal of chimeric reads
 
@@ -205,7 +193,7 @@ During PCA amplification 16S rRNA sequences from different organisms can sometim
 You can run chimera checking with VSEARCH with this command (~3 min on 1 CPU):
 
 ```bash
-chimera_filter.pl -type 1 -thread 4 -db /home/shared/rRNA_db/Bacteria_RDP_trainset15_092015.fa fasta_files/*fasta
+chimera_filter.pl -type 1 -thread 4 -db /home/ubuntu/data/RDP_trainset16_022016.fa fasta_files/*fasta
 ```
 
 This script will remove any reads called either ambiguously or as chimeric, and output the remaining reads in the "non_chimeras" folder by default.
@@ -214,6 +202,9 @@ By default the logfile "chimeraFilter_log.txt" is generated containing the count
 
 !!! note "Question 3"
     What is the mean percent of reads retained after this step, based on the output in the log file ("nonChimeraCallsPercent" column)?
+
+!!! success "Answer"
+    54.35%
 
 !!! note "Question 4"
      What percent of stitched reads was retained for sample 75CMK8KO after all the filtering steps 
@@ -246,7 +237,7 @@ Several parameters for this program can be specified into a text file, which wil
 ```bash
 echo "pick_otus:threads 1" >> clustering_params.txt
 echo "pick_otus:sortmerna_coverage 0.8" >> clustering_params.txt
-echo "pick_otus:sortmerna_db /home/shared/pick_otu_indexdb_rna/97_otus" >> clustering_params.txt
+echo "pick_otus:sortmerna_db /home/ubuntu/data/97_otus" >> clustering_params.txt
 ```
 
 We will be using the **uclust method** of **open-reference OTU picking**. In open-reference OTU picking, reads are first clustered against a reference database; then, a certain percent (10% in the below command) of those reads that failed to be classified are sub-sampled to create a new reference database and the remaining unclassified reads are clustered against this new database. This **de novo** clustering step is repeated again by default using the below command (can be turned off to save time with the **"–suppress_step4"** option).
@@ -304,7 +295,7 @@ figtree
 ```
 View the tree by opening the file ’*.tre’ in the ’clustering’ folder **(Desktop->Taxonomy->otus)**. The tree that is produced is too complex to be of much use. We will look at a different tool, Megan 6, which produces a far more useful tree. 
 
-Megan can be opened from the terminal by typing **MEGAN**. If you are asked for a licence select the following file /mnt/workshop/data/HT\_MEGAN5\_registration\_for\_academic_use.txt. From the File menu select Import -> BIOM format.
+Megan can be opened from the terminal by typing **MEGAN**. If you are asked for a licence select the following file /mnt/workshop/data/HT\_MEGAN6\_registration\_for\_academic_use.txt. From the File menu select Import -> BIOM format.
 Find your biom file and import it.
 
 Megan will generate a tree that is far more informative than the one produced with FigTree. You can change the way Megan displays the data by clicking on the various icons and menu items. Please spend some time exploring your data.
@@ -328,6 +319,9 @@ Counts/sample detail:
 
 !!! note "Question 5"
     What is the read depth for sample "75CMK8KO"?
+
+!!! success "Answer"
+    494
 
 We need to subsample the number of reads for each sample to the same depth, which is necessary for several downstream analyses. This is called **rarefaction**, a technique that provides an indication of **species richness** for a given number of samples. First it indicates if you have sequence enough to identify all species. Second we want to rarify the read depth of samples to a similar number of reads for comparative analysis. There is actually quite a lot of debate about whether rarefaction is necessary (since it throws out data), but it is still the standard method used in microbiome studies. We want to rarify the read depth to the sample with the lowest "reasonable" number of reads. Of course, a "reasonable" read depth is quite subjective and depends on how much variation there is between samples.
 
@@ -500,7 +494,7 @@ Load "otu_table.spf" as the Profile file and "map.txt" as the Group metadata fil
 
 As a reminder, the full paths of these files should be:
 ```
-/home/mh_user/Desktop/16S_chemerin_tutorial/final_otu_tables/otu_table.spf and /home/mh_user/Desktop/16S_chemerin_tutorial/map.txt
+/home/ubuntu/16S_chemerin_tutorial/final_otu_tables/otu_table.spf and /home/ubuntu/16S_chemerin_tutorial/map.txt
 ```
 
 Change the Group field to "Source" and the profile level to "Level_6" (which corresponds to the genus level). Change the heading from "Multiple groups" to "Two groups". The statistical test to "Welch's t-test" and the multiple test correction to "Benjamini-Hochberg FDR"
@@ -510,66 +504,13 @@ Change the plot type to "Bar plot". Look at the barplot for Prevotella and save 
 !!! note "Question"
     Can you see how many genera are significant by clicking "Show only active features"?
 
-### Part 2: 16S analysis of whole genome shotgun sequencing
+!!! success "Answer"
+    TBD
 
-###Closed reference OTU picking of 16S ribosomal rRNA fragments selected from a shotgun data set
----
+!!! note "*Bonus exercise*"
+    Bonus exercise for fast learners.
 
-In a closed-reference OTU picking process, reads are clustered against a reference sequence collection and any reads, which do not hit a sequence in the reference sequence collection, are excluded from downstream analyses. In QIIME, **pick\_closed\_reference\_otus.py** is the primary interface for closed-reference OTU picking in QIIME. If the user provides taxonomic assignments for sequences in the reference database,
-those are assigned to OTUs. We could use this approach to perform
-taxonomic analysis on shotgun data. We need to perform the following
-steps:
-
-1. Extract those reads from the data set that contain 16S ribosomal RNA
-sequence. If there are less than (e.g.) 100 nucleotides of rRNA
-sequence, the read should be discarded.
-2. Remove non-rRNA sequence (flanking regions) from those reads
-3. Run closed-reference OTU picking workflow
-4. Visualise the results, e.g. in Megan
-
-###Extraction of 16S rRNA sequence-containing reads with rRNASelector
----
-
-We will analyze an Illumina paired-end dataset that has been drastically reduced in size for this tutorial, while preserving the majority of the 16S containing reads. The dataset is from the metagenome described at
-<http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3772140/>. There is a pdf in the working directory for this part of the tutorial. This is a paired end dataset, and where read pairs overlapped, they were merged into a single sequence. If read pairs did not overlap, both reads were included in the analysis. QC was performed using the EBI Metagenomics pipeline. We will use a tool called rRNASelector, which is freely available
-(<http://www.ncbi.nlm.nih.gov/pubmed/21887657>) to select our 16S rRNA sequence containing reads. The tool invokes hmmsearch and uses trained hidden Markov models to detect reads with 16S rRNA sequence. The tool also trims the reads so that only 16S rRNA sequence is present in the fasta file we will feed into the QIIME workflow.
-
-First, we need to go to our working directory. You will find a file called A7A-paired.fasta containing the sequence reads. Fire up **rRNASelector** from the command line.
-
-    cd ~/Desktop/Taxonomy/A7A/
-    rRNASelector
-
-A graphical interface should appear. Note interaction with the interface may have a few seconds lag. 
-
-1. Load the sequence file by clicking on ’File Choose’ at the top and navigate to the file A7A-paired.fasta. 
-2. Select the file and click ’Open’. The tool will automatically fill in file names for the result files.
-3. Change the Number of CPUs to ’4’ 
-4. Select Prokaryote 16S (to include both bacterial and archaeal 16S sequences) 
-5. Specify the location of the hmmsearch file by clicking the second ’File Choose’ button. Type in manually the location '**/usr/bin/hmmsearch**', 
-6. Then click process. The run should take a few minutes to complete.
-
-If all went well, you can close rRNASelector by clicking on Exit. You will have 3 new files in your directory, one containing untrimmed 16S reads, one containing trimmed 16S reads (**A7A-paired.prok.16s.trim.fasta**; that’s the one we want) and a file containing reads that do not contain (sufficient) 16S sequence.
-
-###Closed-reference OTU picking workflow and visualization of results in Megan 6
----
-
-We are now ready to pick our OTUs. We do that by running the following
-command (all on one line and no space after gg\_otus-12-10):
-
-```
-pick_closed_reference_otus.py -i A7A-paired.prok.16s.trim.fasta -o ./cr_uc -r /mnt/workshop/tools/qiime_software/gg_otus-12_10-release/rep_set/97_otus.fasta -t /mnt/workshop/tools/qiime_software/gg_otus-12_10-release/taxonomy/97_otu_taxonomy.txt
-```
-
-We need to specify the following options. The command will take several minutes to run. When finished open Megan as described before, import the otu\_table.biom file and explore the results.
-
-    -i input_file.fasta
-    -o output_directory
-    -r /path/to/reference_sequences
-    -t /path/to/reference_taxonomy
-
-###Bonus
 -----
-
 
 The QIIME overview tutorial at
 (http://qiime.org/tutorials/tutorial.html) has a number of additional steps that you may find interesting; so feel free to try some of them out. Note hat we have not installed Cytoscape, so we cannot visualize OTU networks.
