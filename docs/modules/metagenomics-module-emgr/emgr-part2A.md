@@ -66,7 +66,7 @@ str(results, list.len=4)
 Each entry in the list can now be accessed by name. Give each row an explicit name before manipulating the table contents with dplyr functions. The main advantage of tbl_df (return a dataframe from a dataframe) is that it only displays a few rows and all the columns fit on the current screen, with the rest of the data displayed as text. We will be making extensive use of the dplyr package, which allows operations to be chained ("%>%"); it is analogous to the linux pipe command (|), see here for more details: https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html  
 
 
-### 1. Taxonomy: who is there and in what proportion?_
+### 1. Taxonomy: who is there and in what proportion?
 
 We can optimise the display of the first few columns or so...
 
@@ -351,7 +351,7 @@ Heatmap of Absolute Molecular Function term counts through treatment
 
 ```{r}
 mf_genomic_transcriptomics %>%
-ggplot( aes(x=condition,y=description))+
+ggplot( aes(x=condition,y=description)) + facet_grid(~DataType) +
 geom_tile(aes(fill=count)) + scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
@@ -361,7 +361,8 @@ Heat map of relative occurrence of molecular function term counts throughout tre
 ```{r}
 mf_genomic_transcriptomics %>%
 ggplot( aes(x=condition,y=description))+
-geom_tile(aes(fill=prop)) + scale_fill_gradient(low="white", high="darkblue") +
+geom_tile(aes(fill=prop)) + facet_grid(~DataType) +
+scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
 ```
