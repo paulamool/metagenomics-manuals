@@ -413,8 +413,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-taxonomy-who-is-there-and-in-what-proportion_" title="1. Taxonomy: who is there and in what proportion?_" class="md-nav__link">
-    1. Taxonomy: who is there and in what proportion?_
+  <a href="#1-taxonomy-who-is-there-and-in-what-proportion" title="1. Taxonomy: who is there and in what proportion?" class="md-nav__link">
+    1. Taxonomy: who is there and in what proportion?
   </a>
   
 </li>
@@ -529,8 +529,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-taxonomy-who-is-there-and-in-what-proportion_" title="1. Taxonomy: who is there and in what proportion?_" class="md-nav__link">
-    1. Taxonomy: who is there and in what proportion?_
+  <a href="#1-taxonomy-who-is-there-and-in-what-proportion" title="1. Taxonomy: who is there and in what proportion?" class="md-nav__link">
+    1. Taxonomy: who is there and in what proportion?
   </a>
   
 </li>
@@ -599,7 +599,7 @@ Let&rsquo;s have a look at results object</p>
 </td></tr></table>
 
 <p>Each entry in the list can now be accessed by name. Give each row an explicit name before manipulating the table contents with dplyr functions. The main advantage of tbl_df (return a dataframe from a dataframe) is that it only displays a few rows and all the columns fit on the current screen, with the rest of the data displayed as text. We will be making extensive use of the dplyr package, which allows operations to be chained (&ldquo;%&gt;%&rdquo;); it is analogous to the linux pipe command (|), see here for more details: <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html</a>  </p>
-<h3 id="1-taxonomy-who-is-there-and-in-what-proportion_">1. Taxonomy: who is there and in what proportion?_<a class="headerlink" href="#1-taxonomy-who-is-there-and-in-what-proportion_" title="Permanent link">&para;</a></h3>
+<h3 id="1-taxonomy-who-is-there-and-in-what-proportion">1. Taxonomy: who is there and in what proportion?<a class="headerlink" href="#1-taxonomy-who-is-there-and-in-what-proportion" title="Permanent link">&para;</a></h3>
 <p>We can optimise the display of the first few columns or so&hellip;</p>
 <p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -939,7 +939,7 @@ Heatmap of Absolute Molecular Function term counts through treatment</p>
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mf_genomic_transcriptomics <span class="o">%&gt;%</span>
-ggplot<span class="p">(</span> aes<span class="p">(</span>x<span class="o">=</span>condition<span class="p">,</span>y<span class="o">=</span>description<span class="p">))</span><span class="o">+</span>
+ggplot<span class="p">(</span> aes<span class="p">(</span>x<span class="o">=</span>condition<span class="p">,</span>y<span class="o">=</span>description<span class="p">))</span> <span class="o">+</span> facet_grid<span class="p">(</span><span class="o">~</span>DataType<span class="p">)</span> <span class="o">+</span>
 geom_tile<span class="p">(</span>aes<span class="p">(</span>fill<span class="o">=</span>count<span class="p">))</span> <span class="o">+</span> scale_fill_gradient<span class="p">(</span>low<span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">,</span> high<span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">)</span> <span class="o">+</span>
 xlab<span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> ylab<span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> theme<span class="p">(</span>axis.text.x<span class="o">=</span>element_text<span class="p">(</span>angle<span class="o">=</span><span class="m">45</span><span class="p">,</span> hjust<span class="o">=</span><span class="m">1</span><span class="p">))</span>
 </pre></div>

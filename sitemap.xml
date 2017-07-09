@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>/trainers/trainers/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -21,7 +21,7 @@
         
     <url>
      <loc>/timetables/timetable_metagenomics/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -30,7 +30,7 @@
     
     <url>
      <loc>/preamble/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -39,19 +39,19 @@
         
     <url>
      <loc>/modules/metagenomics-module-cli/commandline/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/modules/metagenomics-module-qc/ngs-qc/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/modules/metagenomics-module-tax/tax/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -63,13 +63,13 @@
         
     <url>
      <loc>/modules/metagenomics-module-wga/wga/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/modules/metagenomics-module-fda/fda/</loc>
-     <lastmod>2017-07-07</lastmod>
+     <lastmod>2017-07-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

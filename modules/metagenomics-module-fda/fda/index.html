@@ -509,6 +509,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#emg-comparison-tools" title="EMG comparison tools" class="md-nav__link">
+    EMG comparison tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#visualising-taxonomic-data-using-megan" title="Visualising taxonomic data using MEGAN" class="md-nav__link">
     Visualising taxonomic data using MEGAN
   </a>
@@ -638,6 +645,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#emg-comparison-tools" title="EMG comparison tools" class="md-nav__link">
+    EMG comparison tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#visualising-taxonomic-data-using-megan" title="Visualising taxonomic data using MEGAN" class="md-nav__link">
     Visualising taxonomic data using MEGAN
   </a>
@@ -664,7 +678,7 @@
               
                 
                 
-                <h1 id="functional-data-analysis">Functional Data Analysis<a class="headerlink" href="#functional-data-analysis" title="Permanent link">&para;</a></h1>
+                <h1 id="emg-functional-data-analysis">EMG Functional Data Analysis<a class="headerlink" href="#emg-functional-data-analysis" title="Permanent link">&para;</a></h1>
 <h2 id="key-learning-outcomes">Key Learning Outcomes<a class="headerlink" href="#key-learning-outcomes" title="Permanent link">&para;</a></h2>
 <hr />
 <p>After completing this module the trainee should be able to:</p>
@@ -725,39 +739,50 @@ InterPro entries are given GO terms by curators if the terms can be accurately a
 <h2 id="practical">Practical<a class="headerlink" href="#practical" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="browsing-analysed-data-via-the-emg-website">Browsing analysed data via the EMG website<a class="headerlink" href="#browsing-analysed-data-via-the-emg-website" title="Permanent link">&para;</a></h3>
-<p>For this session, we are going to look at the Ocean Sampling Day (OSD) 2014 project, which involved simultaneously sampling from geographically diverse oceanographic sites on Solstice 2014. A map of all of the sampling sites is shown on the project page: <a href="https://www.ebi.ac.uk/metagenomics/projects/ERP009703">https://www.ebi.ac.uk/metagenomics/projects/ERP009703</a></p>
-<p>To get the OSD project page, either follow the above link or open the Metagenomics Portal home page (<strong><a href="https://www.ebi.ac.uk/metagenomics/">https://www.ebi.ac.uk/metagenomics/</a></strong>).</p>
+<p>For this session, we are going to look at a Metagenome of a microbial consortium obtained from the Tuna oil field in the Gippsland Basin, Australia project. In 2011, fluid samples were collected from the A7A oil well in the Tuna oil field (38°10&rsquo; S, 148°25&rsquo; E) in the Gippsland Basin. A map of the sampling site is shown on the project page: <a href="https://www.ebi.ac.uk/metagenomics/projects/ERP004636">https://www.ebi.ac.uk/metagenomics/projects/ERP004636</a></p>
+<p>To get the Tuna project page, follow the above link or open the Metagenomics Portal home page (<strong><a href="https://www.ebi.ac.uk/metagenomics/">https://www.ebi.ac.uk/metagenomics/</a></strong>).</p>
 <ol>
-<li>enter ‘<strong>OSD</strong>’ in the search box on the top right hand side of the page, and follow the link to project <strong>ERP009703</strong>. You should now have a Project overview page, which describes the project, submitter contact details, and links to the samples and runs that the project contains.</li>
-<li>Scroll down to Associated Runs and use the ‘<strong>Filter</strong>’ search box to find the OSD80_2014-06-21_0m_NPL022 sample (<strong>ERS667582</strong>). </li>
+<li>enter ‘<strong>ERP004636</strong>’ in the search box on the top right hand side of the page, and follow the link to project. You should now have a Project overview page, which describes the project, submitter contact details, and links to the samples and runs that the project contains. </li>
 <li>Click on the Sample Name link (not the Run link) to arrive at the overview page, describing various contextual data, such as the geographic location from which the material was isolated, its collection date, and so on.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Question 1:</p>
 <p>What is the latitude, longitude and depth at which the sample was collected?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>-38.1700 , 148.4200</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 2:</p>
 <p>What geographic location does this correspond to?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Australia</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Question 3:</p>
 <p>What environmental ontology (ENVO) identifer and name has the sample material been annotated with?</p>
 </div>
-<p>Now scroll down to the ‘Associated runs’ section of the page. Some samples can have a number of sequencing runs associated with them (for example, corresponding to 16S rRNA amplicon analyses and WGS analyses performed on the same sample). In this case, there is only 1 associated run: ERR770971. Click on the Run ID to go to the Run page.</p>
-<p>This page has a number of tabs towards the top (Overview, Quality control, Taxonomy analysis, Functional analysis, and Download). Click on the ‘Download’ tab. Click the file labelled ‘<strong>Predicted CDS</strong>’ link to save this file to your computer. Find the file (it should be in your Downloads folder), unzip it and examine it using ‘less’ by typing the following commands in a terminal window:</p>
-<p>Click on the ‘Download’ tab. Right click the file labelled ‘Predicted CDS (FASTA)’ link, and save this file to your desktop. Find the file, and either double click on it to open it, or examine it using ‘less’ by typing the following commands in a terminal window:</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>ocean water ENVO:00002151</p>
+</div>
+<p>Now scroll down to the ‘Associated runs’ section of the page. Some samples can have a number of sequencing runs associated with them (for example, corresponding to 16S rRNA amplicon analyses and WGS analyses performed on the same sample). In this case, there is only 1 associated run: <strong>ERR413102</strong>. Click on the Run ID to go to the Run page.</p>
+<p>This page has a number of tabs towards the top (Overview, Quality control, Taxonomy analysis, Functional analysis, and Download). </p>
+<p>Click on the ‘<strong>Download</strong>’ tab. Right click the file labelled ‘<strong>Predicted CDS (FASTA)</strong>’ link, and save this file to your desktop. Find the file (it should be in your Downloads folder), unzip it and examine it using ‘less’ by typing the following commands in a terminal window:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cd ~/Downloads
-gzip –d ERR770971_MERGED_FASTQ_pCDS.faa.gz 
-less ERR770971_MERGED_FASTQ_pCDS.faa
+gzip –ERR4131021_MERGED_FASTQ_pCDS.faa.gz 
+less ERR413102_MERGED_FASTQ_pCDS.faa
 </pre></div>
 </td></tr></table>
 
 <p>Have a look at one or two of the many sequences it contains. </p>
 <p>You can count the total number of sequences in the file by grepping the number of header lines that start with “&gt;”</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>grep -c <span class="s2">&quot;^&gt; &quot;</span>ERR770971_MERGED_FASTQ_pCDS.faa
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>grep -c <span class="s2">&quot;^&gt;&quot;</span> ERR413102_MERGED_FASTQ_pCDS.faa
 </pre></div>
 </td></tr></table>
 
@@ -774,14 +799,22 @@ HLLSYRYAYGKFSSTHEATIGGCFLTKDEELDDHIVKYEIWDTAGKNGTIHLPRCTTSKAYXIQVTWYRNAIAAVVVFDV
 <p class="admonition-title">Question 4:</p>
 <p>Which protein family does InterProScan predict your sequence belongs to, and what GO terms are predicted to describe its function?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Here is an answer.</p>
+</div>
 <p>Clicking on the InterPro entry name or IPR accession number will take you to the InterPro entry page for your result, where more information
 can be found.</p>
-<p>Return to the overview page for <strong>ERR770971</strong>.</p>
+<p>Return to the overview page for <strong>ERR413102</strong>.</p>
 <p>Now we are going to look at the functional analysis results for all of the pCDS in the sample. First, we will find the number of sequences that made it through to the functional analysis section of the pipeline.</p>
 <p>Click on the Quality control tab. This page displays a series of charts, showing how many sequences passed each quality control step, how many reads were left after clustering, and so on.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 5:</p>
 <p>After all of the quality filtering steps are complete, how many reads were submitted for analysis by the pipeline?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>44,429,715 Reads.</p>
 </div>
 <p>Next, we will look at the results of the functional predictions for the
 pCDS. These can be found under the Functional analysis tab.</p>
@@ -790,81 +823,139 @@ pCDS. These can be found under the Functional analysis tab.</p>
 <p class="admonition-title">Question 6:</p>
 <p>How many predicted coding sequences (pCDS) are in the run?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>19,838,031 pCDS.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 7:</p>
 <p>How many pCDS have InterProScan hits?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>5,754,502 pCDS.</p>
 </div>
 <p>Scroll down the page to the InterPro match summary section</p>
 <div class="admonition note">
 <p class="admonition-title">Question 8:</p>
 <p>How many different InterPro entries were matched by the pCDS?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>4,207 IPRO hits.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 9:</p>
 <p>Why is this figure different to the number of pCDS that have InterProScan hits?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Multiple CDS match an interpro id.</p>
+</div>
 <p>Next we will examine the GO terms predicted by InterPro for the pCDS in the sample.</p>
-<p>Scroll down to the GO term annotation section of the page and examine the 3 bar charts, which correspond to the 3 different components of the
-Gene Ontology.</p>
+<p>Scroll down to the GO term annotation section of the page and examine the 3 bar charts, which correspond to the 3 different components of the Gene Ontology.Selecting the pie chart representation of GO terms makes it easier to visualise the data to find the answer.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 10:</p>
 <p>What are the top 3 biological process terms predicted for the pCDS from the sample?</p>
 </div>
-<p>Selecting the pie chart representation of GO terms makes it easier to visualise the data to find the answer.</p>
-<p>Now we will look at the taxonomic analysis for this run.</p>
-<p>Click on the Taxonomy Analysis tab and examine the phylum composition graph and table.</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>biosynthetic process, nitrogen compound metabolism, small molecule metabolic process</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 11:</p>
 <p>How many of the WGS reads are predicted to encode 16S rRNAs?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>41,436</p>
+</div>
+<p>Now we will look at the taxonomic analysis for this run.</p>
+<p>Click on the Taxonomy Analysis tab and examine the phylum composition graph and table.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 12:</p>
 <p>What are the top 3 phyla in the run, according to 16S rRNA analysis?</p>
 </div>
-<p>Select the Krona chart view of the data icon. This brings up an
-interactive chart that can be used to analyse data at different
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Unassigned 48%, protobacteria 20.81%, Firmicutes 14.721% and Thermotogae 8.19%</p>
+</div>
+<p>Select the Krona chart view of the data icon. This brings up an interactive chart that can be used to analyse data at different
 taxonomic ranks.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 13:</p>
-<p>What is the proportion of Polaribacter in the population?</p>
+<p>What is the proportion of Thermoanaerobacteraceae in the population?</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If the cyanobacteria section of the chart looks strange, this is because the version of GreenGenes used for analysis lists chloroplastic organisms under the cyanobacteria category; some of the cyanobacterial counts are, in fact, derived from photosynthetic eukaryotic organisms.</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Total 161, 55% Clostridia; 41% Firmicutes; 6% of all</p>
 </div>
-<p>Now we will compare these analyses with those for a sample taken at 2 m depth from the same geographical location.</p>
-<p>In a new tab or window, find and open the Ocean Sampling Day (OSD) 2014 project page again. Find the sample OSD80_2014-06-21_2m_NPL022 and examine metadata on the Overview page.</p>
+<p>Now we will compare these analyses with those for a WGS practical.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 14:</p>
-<p>Other than sampling depth, what are the differences between this sample and OSD80_2014-06-21_0m_NPL02?</p>
+<p>What are the differences in Taxonomy and Functional analysis?</p>
 </div>
-<p>Scroll to the Assocated runs section, and click on ERR770970. Open the Functional analysis tab and examine the Sequence feature and InterPro match summary information for this run.</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>TBD</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 15:</p>
-<p>How many pCDS were in this run? </p>
+<p>Do the number of pCDS predicted differ? </p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>TBD</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Question 16:</p>
-<p>How many of the pCDSs have an InterPro match?</p>
+<p>Do the number of pCDSs with an InterPro match differ?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>TBD</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Question 17:</p>
-<p>How many different InterPro entries are matched by this run?</p>
+<p>Do InterPro entries matched differ?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>TBD</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Question 18:</p>
-<p>Are these figures broadly comparable to those for the previous sample?</p>
+<p>Are these figures broadly comparable to those for the previous analysis?</p>
 </div>
-<p>Now we are going to look at the differences in slimmed GO terms between the 2 runs. There are to ways to do this. First, you can simply scroll to the bottom of the page and examine the GO term annotation (note - selecting the bar chart representation of GO terms makes it easier to compare different data sets). Alternatively, you can use the comparison tool, which allows direct comparison of runs within a project. The tool can be accessed by clicking on the ‘Comparison Tool’ tab, illustrated in Figure 6 below. At present, the tool only compares slimmed GO terms, but will be expanded to cover full GO terms, InterPro annotations, and taxonomic profiles as development of the site continues.</p>
-<p>Click on the Comparison tool tab and choose the Ocean Sampling Day (OSD) 2014 project from the sample list and select the OSD80_2014-06- 21_0m_NPL022 - ERR770971 and OSD80_2014-06-21_2m_NPL022 - ERR770970.</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>TBD</p>
+</div>
+<h3 id="emg-comparison-tools">EMG comparison tools<a class="headerlink" href="#emg-comparison-tools" title="Permanent link">&para;</a></h3>
+<p>To look at the differences in slimmed GO terms between the 2 runs. There are two ways to do this. First, you can simply scroll to the bottom of the page and examine the GO term annotation (note - selecting the bar chart representation of GO terms makes it easier to compare different data sets). Alternatively, you can use the comparison tool, which allows direct comparison of runs within a project. The tool can be accessed by clicking on the ‘Comparison Tool’ tab. At present, the tool only compares slimmed GO terms, but will be expanded to cover full GO terms, InterPro annotations, and taxonomic profiles as development of the site continues.</p>
+<div class="admonition note">
+<p class="admonition-title"><em>Bonus exercise</em></p>
+<p>Bonus exercise.</p>
+</div>
+<ol>
+<li>Click on the Comparison tool tab and choose the Ocean Sampling Day (OSD) 2014 project from the sample list and select the OSD80_2014-06- 21_0m_NPL022 - ERR770971 and OSD80_2014-06-21_2m_NPL022 - ERR770970.</li>
+</ol>
 <div class="admonition note">
 <p class="admonition-title">Question 19:</p>
 <p>Are there visible differences between the GO terms for these runs. Could there be any biological explanation for this?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Yes, shift in proportion of some functions. yes climate and population density. </p>
 </div>
 <p>Navigate back and open the taxonomic analysis results tab for each run.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 20:</p>
 <p>How does the taxonomic composition differ between runs? Are any trends in the data consistent with your answer to question 19?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Unassigned dropped from 48% to 13% and polaribacter is Total 931, 80% Flavobacteriaceae; 74% Bacteriodetes; 43% of all</p>
 </div>
 <h3 id="visualising-taxonomic-data-using-megan">Visualising taxonomic data using MEGAN<a class="headerlink" href="#visualising-taxonomic-data-using-megan" title="Permanent link">&para;</a></h3>
 <p>Next, we are going to look at the taxonomic predictions for all of the runs. To do this, we are going to load them into MEGAN. MEGAN is a tool suite that provides metagenomic data analysis and visualization. We are going to use only a small subset of its features, relating to taxonomic comparison. Detailed information on MEGAN and the analyses and visualisations it offers can be found here: 
@@ -895,9 +986,17 @@ less -S ERP009703_taxonomy_abundances_v2.0.tsv
 <p class="admonition-title">Question 21:</p>
 <p>Are the number of classified 16S reads roughly equivalent across all of the different sampling sites?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>No, range from ERR771006 ~10 to ~3,250 ERR771046</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 22:</p>
 <p>Which run appears particularly enriched in Polaribacter?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>ERR770970 ~920</p>
 </div>
 <p>You can change between abundance counts and relative abundance using the Options drop menu and choosing % Percentage Scale or Linear Scale.</p>
 <p>Change the chart view to ‘Bubble Chart’. This visualisation can be useful when comparing a large number of samples.</p>
@@ -906,9 +1005,17 @@ less -S ERP009703_taxonomy_abundances_v2.0.tsv
 <p>Do any samples contain taxa not found in other samples? </p>
 </div>
 <p>Take a look at the Schlegelella genus.</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Yes, schlegelella is only found in ERR770961 (64)</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 24:</p>
 <p>Can you discern any patterns in the geographical distribution of certain species (for example, the cluster of samples enriched for the lactobacillus genus compared to other samples)?</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>lactobacillus ERR771039-58 Belgian</p>
 </div>
 <p>We are now going to take a look at which other datasets in EBI Metagenomics that lactobacilli are found in. Point your browser at <a href="https://www.ebi.ac.uk/metagenomics/search/">https://www.ebi.ac.uk/metagenomics/search/</a></p>
 <p>This interface allows you to search the project, sample and run related metadata and analysis results for all of the publicly available datasets in the EBI Metagenomics resource.</p>
@@ -917,18 +1024,17 @@ less -S ERP009703_taxonomy_abundances_v2.0.tsv
 <p class="admonition-title">Question 25:</p>
 <p>Which biome category has the most datasets that contain lactobacilli?</p>
 </div>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Host-associated (67,031) human digestive</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Question 26:</p>
 <p>How well does this correlate with what’s known about these bacteria?</p>
 </div>
-<p>Finally, we will try to use the interface to find functional proteins present under certain environmental conditions. For example, InterPro entry IPR001087 represents a domain found in GDSL esterases and lipases, which are hydrolytic enzymes with multifunctional properties.</p>
-<div class="admonition note">
-<p class="admonition-title">Question 27:</p>
-<p>Using the search interface, can you identify the metagenomics datasets sampled from ocean sites at between 10 and 15 degrees C that contain these enzymes?</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Question 28:</p>
-<p>Can you envisage ways in which this kind of search functionality could be used for target / enzyme discovery?</p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>TBD</p>
 </div>
                 
                   
