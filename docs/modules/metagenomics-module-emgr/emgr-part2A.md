@@ -34,7 +34,6 @@ analysis_files <- c("BP_GO_abundances","BP_GO-slim_abundances","CC_GO_abundances
 Read in all the contingency tables in the list making use of the lapply function
 
 ```{r}
-
 baseanalysis = "https://www.ebi.ac.uk/metagenomics/projects/ERP001506/download/2.0/export?contentType=text&exportValue="
 metadata <- "https://www.ebi.ac.uk/metagenomics/projects/ERP001506/overview/doExport";
 filenames <- paste(baseanalysis, analysis_files, sep="")
@@ -53,10 +52,10 @@ rename(days=Sample.Name, id=Sample.ID, datatype=Experiment.type,genomictype=geno
 select(days,id,datatype,genomictype) %>%
 mutate(id=ifelse(datatype=="amplicon", paste(id, "_A", sep=""), ifelse(datatype=="metatranscriptomic", paste(id,"_T", sep=""), paste(id, "_G", sep="")))) %>%
 mutate(datatype=str_to_title(datatype))
-
 ```
+
 !!! note "Question"
-How can we access elements in the list?
+    How can we access elements in the list?
 
 ```{r}
 attributes(results)
