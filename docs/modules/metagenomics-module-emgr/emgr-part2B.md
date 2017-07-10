@@ -197,6 +197,8 @@ taxonomy.dna.plot
 myscree(taxonomy.coa$eig / sum(taxonomy.coa$eig))
 ```
 
+![Correspondence Analysis: Metagenomics Taxonomy abundance](images/CA-G.png)
+
 ###5.1 Perform a Correspondence analysis on the Metatranscriptomic data
 
 ```{r}
@@ -213,8 +215,11 @@ theme_light()
 taxonomy.rna.plot
 myscree(taxonomy.coa$eig / sum(taxonomy.coa$eig))
 ```
+
+![Correspondence Analysis: Metatranscriptomic Taxonomy abundance](images/CA-T.png)
+
 !!! note "Question"
-What can you conclude despite the very sparse data?
+    What can you conclude despite the very sparse data?
 
 
 Merge taxonomic and GO_slim_abundances for correspondence analysis._
