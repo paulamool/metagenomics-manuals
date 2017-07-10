@@ -8,7 +8,7 @@ After completing this practical the trainee should be able to:
 
 -   Run some basic linux system and file operation commands
 
--   Navigration of biological data files structure and manipulation
+-   Navigation of biological data files structure and manipulation
 
 ## Resources
 
