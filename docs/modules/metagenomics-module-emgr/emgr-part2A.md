@@ -133,8 +133,11 @@ ylab('proportion abundance') +
 theme_light() + theme(axis.text.x=element_text(angle=45, hjust=1)) +
 coord_flip()
 ```
+
+![Bar plot of relative abundance of species](images/EMGR-1.png)
+
 !!! note "Question"
-What conclusion would you draw from this distribution?
+    What conclusion would you draw from this distribution?
 
 The heatmap is of absolute Species counts per datatypes
 
@@ -144,6 +147,7 @@ ggplot( aes(x=condition,y=phylum))+ facet_grid(~DataType) +
 geom_tile(aes(fill=count)) + scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 ```
+![heatmap is of absolute Species counts per datatypes](images/EMGR-2.png)
 
 ### 2. Function: who does what, in what relative proportion?
 
@@ -205,6 +209,10 @@ ylab('proportion abundance') +
 theme_light() + theme(axis.text.x=element_text(angle=45, hjust=1)) + coord_flip() +
 theme(legend.position="none")
 ```
+
+![Bar plot of relative abundance of Biological Processes](images/EMGR-3.png)
+
+
 !!! note "Question"
 What can you conclude from this plot?
 
@@ -217,16 +225,22 @@ geom_tile(aes(fill=count)) + scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
 ```
-_Heat map of biological process proportions per datatype_
+
+![Heat map of absolute biological process counts per datatype](images/EMGR-4.png)
+
+Heat map of biological process proportions per datatype
+
 ```{r}
 bp_genomic_transcriptomics %>%
 ggplot( aes(x=condition,y=description))+ facet_grid(~DataType) +
 geom_tile(aes(fill=prop)) + scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
-
 ```
+![Heat map of biological process proportions per datatype](images/EMGR-5.png)
+
 **(B) GO Cellular Compartment**: relative occurence during treatment
+
 ```{r}
 cc_slim <- tbl_df(results$CC_GO_slim_abundances)
 cc_slim <- cc_slim %>% mutate(description=as.character(description))
@@ -278,8 +292,11 @@ ylab('proportion abundance') + theme_light() +
 theme(axis.text.x=element_text(angle=45, hjust=1)) +
 coord_flip() + theme(legend.position="none")
 ```
+
+![Bar plot of relative abundances of cellular compartment](images/EMGR-6.png)
+
 !!! note "Question"
-What can you conclude from this plot?
+    What can you conclude from this plot?
 
 Heat map of absolute cellular compartment term counts per datatype
 
@@ -290,6 +307,8 @@ geom_tile(aes(fill=count)) + scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 ```
 
+![Heat map of absolute cellular compartment term counts per datatype](images/EMGR-7.png)
+
 Heat map of Cellular compartment term proportions per datatype
 
 ```{r}
@@ -299,6 +318,8 @@ geom_tile(aes(fill=prop)) + scale_fill_gradient(low="white", high="darkblue") +
 xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
 ```
+
+![Heat map of Cellular compartment term proportions per datatype](images/EMGR-8.png)
 
 **(C) GO Molecular function**: relative occurence during treatment
 
@@ -378,6 +399,6 @@ xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
 ```
 !!! note "Question"
-What can you conclude from this plot?
+    What can you conclude from the plots?
 
 
