@@ -53,6 +53,9 @@ xlab("") + ylab("") + theme(axis.text.x=element_text(angle=45, hjust=1),
 axis.text.y=element_blank())
 ```
 
+![Heat map of absolute InterproScan hit counts throughout treatment](images/IPR-Abs-heat.png)
+
+
 ### 4. GO (all category): relative occurence during treatment.
 
 The goal here is to create a composite plot of all GO category occurence during treatments. Give meaningful names to conditions as for the taxonomic case
@@ -105,6 +108,8 @@ theme_light() + theme(axis.text.x=element_text(angle=45, hjust=1)) +
 coord_flip() +
 theme(legend.position="none") #+ guides(fill=guide_legend(ncol=2))
 ```
+
+![Barplot of relative abundance of all GO terms](images/GO-Bar.png)
 
 ### 5.0 Correspondance Analysisis of the contingency tables.
 The goal of this analysis is to elucidate the relationship between species and GO terms with respect to various treatment conditions (days).
