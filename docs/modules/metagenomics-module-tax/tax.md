@@ -118,7 +118,7 @@ SampleID       BarcodeSequence LinkerPrimerSequence    FileInput       Source  M
 ```
 
 !!! note "Note"
-The Barcode and LinkerPrimerSequence are absent for this tutorial, these would be used for assigning multiplexed reads to samples and for quality control. Our tutorial data set is already de-multiplexed. What QIIME could be used? 
+The Barcode and LinkerPrimerSequence are absent for this tutorial, these would be used for assigning multiplexed reads to samples and for quality control. Our tutorial data set is already de-multiplexed. What tool could be used to do this? 
   
 Execute the following command and test the mapping file for potential errors:
 
@@ -139,7 +139,7 @@ First we need to join the overlapping Illumina Pair End (PE) reads contained in 
 
 ```
 "-p 4" indicates this job should be run on 4 CPU 
-"-o stitched_reads" indicates that the output folder)
+"-o stitched_reads" indicates that the output folder
 ```
 
 Four FASTQ files will be generated for each set of paired-end reads:
@@ -237,7 +237,7 @@ Several parameters for this program can be specified into a text file, which wil
 ```bash
 echo "pick_otus:threads 1" >> clustering_params.txt
 echo "pick_otus:sortmerna_coverage 0.8" >> clustering_params.txt
-echo "pick_otus:sortmerna_db /home/ubuntu/data/97_otus" >> clustering_params.txt
+echo "pick_otus:sortmerna_db /mnt/workshop/data/97_otus" >> clustering_params.txt
 ```
 
 We will be using the **uclust method** of **open-reference OTU picking**. In open-reference OTU picking, reads are first clustered against a reference database; then, a certain percent (10% in the below command) of those reads that failed to be classified are sub-sampled to create a new reference database and the remaining unclassified reads are clustered against this new database. This **de novo** clustering step is repeated again by default using the below command (can be turned off to save time with the **"–suppress_step4"** option).
@@ -323,7 +323,7 @@ Counts/sample detail:
 !!! success "Answer"
     494
 
-We need to subsample the number of reads for each sample to the same depth, which is necessary for several downstream analyses. This is called **rarefaction**, a technique that provides an indication of **species richness** for a given number of samples. First it indicates if you have sequence enough to identify all species. Second we want to rarify the read depth of samples to a similar number of reads for comparative analysis. There is actually quite a lot of debate about whether rarefaction is necessary (since it throws out data), but it is still the standard method used in microbiome studies. We want to rarify the read depth to the sample with the lowest "reasonable" number of reads. Of course, a "reasonable" read depth is quite subjective and depends on how much variation there is between samples.
+We need to subsample the number of reads for each sample to the same depth, which is necessary for several downstream analyses. This is called **rarefaction**, a technique that provides an indication of **species richness** for a given number of samples. First it indicates if you have sequenced enough to identify all species. Second we want to rarify the read depth of samples to a similar number of reads for comparative analysis. There is actually quite a lot of debate about whether rarefaction is necessary (since it throws out data), but it is still the standard method used in microbiome studies. We want to rarify the read depth to the sample with the lowest "reasonable" number of reads. Of course, a "reasonable" read depth is quite subjective and depends on how much variation there is between samples.
 
 ###Rarify reads
 
@@ -375,7 +375,7 @@ In general the more reads you have, the more OTUs you will observe. If a rarefac
 
 Run the following command from within your taxonomy directory, this should take a few minutes to generate a heatmap of the level three taxonomy:
 
-    make_otu_heatmap.py -i final_otu_tables/otu_table_L3.biom -o final_otu_tables/otu_table_L3_heatmap.pdf -c Treatment -m map.txt
+    make_otu_heatmap.py -i final_otu_tables/otu_table.biom -o final_otu_tables/otu_table_L3_heatmap.pdf -c Treatment -m map.txt
     
 
 ### Beta diversity and beta diversity plots
@@ -383,7 +383,7 @@ Run the following command from within your taxonomy directory, this should take 
 Beta diversity analysis, is the assessment of differences between microbial communities/samples. As we have already observed, our samples contain different numbers of sequences. The first step is to remove sample heterogeneity by randomly selecting the same number of reads from every sample. This number corresponds to the ’minimum’ number recorded when you looked at the OTU statistics.  Now run the following command
 
 ```bash
-beta_diversity_through_plots.py -i final_otu_tables/otu_table.biom -m map.txt -o bdiv_even -t otus/rep_set.tre -e 355
+beta_diversity_through_plots.py -i final_otu_tables/otu_table.biom -m map.txt -o bdiv_even -t clustering/rep_set.tre -e 355
 ```
 
 Good data quality and sample metadata is important for visualising metagenomics analysis. The output of these comparisons is a square matrix where a distance or dissimilarity is calculated between every pair of community samples, reflecting the dissimilarity between those samples. The data distance matrix can be then visualized with analyses such as PCoA and hierarchical clustering.
@@ -422,6 +422,16 @@ beta_diversity_through_plots.py -m map_CJS.txt -t clustering/rep_set.tre -i fina
 ``` 
 We can now take a look at whether the genotypes separate in the re-generated weighted beta diversity PCoAs for each source facility separately.
 
+```bash
+
+firefox plots/bdiv_otu_BZ/weighted_unifrac_emperor_pcoa_plot/index.html
+```
+
+```bash
+firefox plots/bdiv_otu_CJS/weighted_unifrac_emperor_pcoa_plot/index.html
+
+```
+
 For the BZ source facility:
 
 ![PCA-plot-BZ](images/PCA4.png)
@@ -454,8 +464,8 @@ UniFrac is a particular beta-diversity measure that analyzes dissimilarity betwe
 QIIME "**beta_diversity_through_plots.py**" takes the OTU table as input, as well as file which contains the phylogenetic relatedness between all clustered OTUs. One HTML file will be generated for the weighted and unweighted beta diversity distances:
 
 ```
-plots/bdiv_otu/weighted_unifrac_emperor_pcoa_plot/index.html
-plots/bdiv_otu/unweighted_unifrac_emperor_pcoa_plot/index.html
+plots/bdiv_otu_BZ/weighted_unifrac_emperor_pcoa_plot/index.html
+plots/bdiv_otu_BZ/unweighted_unifrac_emperor_pcoa_plot/index.html
 ```
 
 Open the weighted HTML file in your browser and take a look, you should see a PCoA very similar to this:
