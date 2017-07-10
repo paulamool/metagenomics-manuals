@@ -25,14 +25,13 @@ suppressWarnings(suppressMessages(require(factoextra)))   # Visualize result of 
 
 ### Gather the necessary analysis results file from EMG portal
 
-Read in the different contigency tables.
 R provides a very versatile data structure that allows us to store various data types, namely the list.
 
 ```{r}
 analysis_files <- c("BP_GO_abundances","BP_GO-slim_abundances","CC_GO_abundances","CC_GO-slim_abundances","GO_abundances","GO-slim_abundances","IPR_abundances","MF_GO_abundances","MF_GO-slim_abundances","phylum_taxonomy_abundances","taxonomy_abundances")
 ```
 
-Read in all the contingency tables in a list making use of the lapply function
+Read in all the contingency tables in the list making use of the lapply function
 
 ```{r}
 
