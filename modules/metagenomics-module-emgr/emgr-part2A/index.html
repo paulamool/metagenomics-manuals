@@ -595,10 +595,48 @@
 </td></tr></table>
 
 <p>Read in all the contingency tables in the list making use of the lapply function</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>baseanalysis <span class="o">=</span> <span class="s">&quot;https://www.ebi.ac.uk/metagenomics/projects/ERP001506/download/2.0/export?contentType=text&amp;exportValue=&quot;</span>
+metadata <span class="o">&lt;-</span> <span class="s">&quot;https://www.ebi.ac.uk/metagenomics/projects/ERP001506/overview/doExport&quot;</span><span class="p">;</span>
+filenames <span class="o">&lt;-</span> <span class="kp">paste</span><span class="p">(</span>baseanalysis<span class="p">,</span> analysis_files<span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+results <span class="o">&lt;-</span> <span class="kp">lapply</span><span class="p">(</span>filenames<span class="p">,</span><span class="kr">function</span><span class="p">(</span>i<span class="p">){</span>
+<span class="kp">print</span><span class="p">(</span>i<span class="p">)</span>
+read.delim<span class="p">(</span>i<span class="p">,</span> header<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">})</span>
+metadata <span class="o">&lt;-</span> tbl_df<span class="p">(</span>read.csv<span class="p">(</span>file<span class="o">=</span>metadata<span class="p">))</span>
+
+metadata <span class="o">&lt;-</span> metadata <span class="o">%&gt;%</span>
+filter<span class="p">(</span>Release.version<span class="o">&gt;</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span>
+mutate<span class="p">(</span>Sample.Name<span class="o">=</span> <span class="kp">gsub</span><span class="p">(</span><span class="s">&quot;Human gut metagenome, |Human gut metatranscriptome \\(mRNA\\), | after antibiotics&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span>Sample.Name<span class="p">))</span> <span class="o">%&gt;%</span>
+mutate<span class="p">(</span>Sample.Name<span class="o">=</span> <span class="kp">paste</span><span class="p">(</span><span class="s">&quot;days&quot;</span><span class="p">,</span><span class="kp">gsub</span><span class="p">(</span><span class="s">&quot; days&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> Sample.Name<span class="p">),</span> sep<span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+mutate<span class="p">(</span>genomictype<span class="o">=</span> <span class="kp">ifelse</span><span class="p">(</span>Experiment.type<span class="o">==</span><span class="s">&quot;metatranscriptomic&quot;</span><span class="p">,</span> <span class="s">&quot;mRNA&quot;</span><span class="p">,</span> <span class="s">&quot;DNA&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+rename<span class="p">(</span>days<span class="o">=</span>Sample.Name<span class="p">,</span> id<span class="o">=</span>Sample.ID<span class="p">,</span> datatype<span class="o">=</span>Experiment.type<span class="p">,</span>genomictype<span class="o">=</span>genomictype<span class="p">)</span> <span class="o">%&gt;%</span>
+select<span class="p">(</span>days<span class="p">,</span>id<span class="p">,</span>datatype<span class="p">,</span>genomictype<span class="p">)</span> <span class="o">%&gt;%</span>
+mutate<span class="p">(</span>id<span class="o">=</span><span class="kp">ifelse</span><span class="p">(</span>datatype<span class="o">==</span><span class="s">&quot;amplicon&quot;</span><span class="p">,</span> <span class="kp">paste</span><span class="p">(</span>id<span class="p">,</span> <span class="s">&quot;_A&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="kp">ifelse</span><span class="p">(</span>datatype<span class="o">==</span><span class="s">&quot;metatranscriptomic&quot;</span><span class="p">,</span> <span class="kp">paste</span><span class="p">(</span>id<span class="p">,</span><span class="s">&quot;_T&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">),</span> <span class="kp">paste</span><span class="p">(</span>id<span class="p">,</span> <span class="s">&quot;_G&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))))</span> <span class="o">%&gt;%</span>
+mutate<span class="p">(</span>datatype<span class="o">=</span>str_to_title<span class="p">(</span>datatype<span class="p">))</span>
+</pre></div>
+</td></tr></table>
+
 <div class="admonition note">
 <p class="admonition-title">Question</p>
-</div>
 <p>How can we access elements in the list?</p>
+</div>
 <p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kp">attributes</span><span class="p">(</span>results<span class="p">)</span>
 </pre></div>
 </td></tr></table>
