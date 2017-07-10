@@ -14,7 +14,7 @@ After completing this module the trainee should be able to:
 
 ### Tools Used
 
-Spades.py :   
+Spades.py : http://bioinf.spbau.ru/en/spades3.7  
 
 ##Introduction
 ---
