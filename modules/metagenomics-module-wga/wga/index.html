@@ -445,6 +445,19 @@
     Introduction
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wgs-assembly-and-annotation-prac" title="WGS Assembly and Annotation prac" class="md-nav__link">
+    WGS Assembly and Annotation prac
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -525,6 +538,19 @@
     Introduction
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wgs-assembly-and-annotation-prac" title="WGS Assembly and Annotation prac" class="md-nav__link">
+    WGS Assembly and Annotation prac
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -557,7 +583,7 @@
 <h2 id="resources-youll-be-using">Resources You’ll be Using<a class="headerlink" href="#resources-youll-be-using" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="tools-used">Tools Used<a class="headerlink" href="#tools-used" title="Permanent link">&para;</a></h3>
-<p>Spades.py :   </p>
+<p>Spades.py : <a href="http://bioinf.spbau.ru/en/spades3.7">http://bioinf.spbau.ru/en/spades3.7</a>  </p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Performing genomic assembly aims at generating a genome-length sequence
@@ -567,29 +593,22 @@ genomes present in the sample and the fact that their sequences are
 sometimes very similar to each other. There are two main approaches to
 perform de novo assembly (genomic or metagenomic): building a consensus
 and generating De Bruijn k-mer graph.</p>
-<p>WGS Assembly and Annotation prac</p>
+<h3 id="wgs-assembly-and-annotation-prac">WGS Assembly and Annotation prac<a class="headerlink" href="#wgs-assembly-and-annotation-prac" title="Permanent link">&para;</a></h3>
+<hr />
 <p>The A7A dataset is quite small by metagenomic standards, only about 52M reads, and from a simple and somewhat extreme environment. We have submitted A7A to the EBI Metagenomics pipeline (<a href="https://protect-au.mimecast.com/s/ZXg4BMh0dVnRtZ?domain=ebi.ac.uk">https://protect-au.mimecast.com/s/ZXg4BMh0dVnRtZ?domain=ebi.ac.uk</a>), and in this pract session you will do some of the preparatory work for the later session where you will compare the results of any assembly-based approach to those that come from the EBI pipeline.</p>
 <p>Even though A7A is relatively small, assembling the reads took about an hour with 16 cores and about 20GB of memory - a much more computational task than we could expect you to be able to perform with the resources and time available in this workshop. We have already assembled A7A using metaSpades, and you&rsquo;ll find the assembled contigs and the log from the assembly in /data/A7A_WGS/Spades_A7A.zip. </p>
 <p>The command used for the assembly was: </p>
-<p>``bash
-<a href="https://protect-au.mimecast.com/s/m4kKB2U1XWe4hD?domain=metaspades.py">https://protect-au.mimecast.com/s/m4kKB2U1XWe4hD?domain=metaspades.py</a> -o spades &ndash;pe1-1 DL3_GATCAG_L008_R1_001.fastq &ndash;pe1-2 DL3_GATCAG_L008_R2_001.fastq -m 64 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>You will find that Spades has produced two FASTA files as a result of assembling the reads: contigs.fasta and scaffolds.fasta.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>https://protect-au.mimecast.com/s/m4kKB2U1XWe4hD?domain<span class="o">=</span>metaspades.py -o spades --pe1-1 DL3_GATCAG_L008_R1_001.fastq --pe1-2 DL3_GATCAG_L008_R2_001.fastq -m <span class="m">64</span> 
+</pre></div>
+</td></tr></table>
 
-!!! note &quot;What is the difference between these two files? Which one would you use for the next steps of the process?&quot;
-    Scaffolds.fasta contains some contigs are made up from two or more smaller contigs together with strings of NNNNNNNs. These are places where the assembler knows that the smaller contigs belong together but cannot fill in the small gap between them. Generally you want to work with contigs.fasta to avoid the runs of NNNNNNNs.
-
-Your next step is to find and annotate the genes in these contigs, and we will use Prokka (https://protect-au.mimecast.com/s/krZGBwfrLKV3UW?domain=vicbioinformatics.com) from Torsten Seeman at the Victorian Bioinformatics Consortium. Your next task is to run Prokka over the contigs.fasta file, getting it to find ORFs and their best matches in the UniProtKB protein database. Prokka is already installed on your prac systems.
-
-```bash
-prokka --outdir A7A_prokka --prefix A7A contigs.fasta
+<p>You will find that Spades has produced two FASTA files as a result of assembling the reads: contigs.fasta and scaffolds.fasta.</p>
+<div class="admonition note">
+<p class="admonition-title">What is the difference between these two files? Which one would you use for the next steps of the process?</p>
+<p>Scaffolds.fasta contains some contigs are made up from two or more smaller contigs together with strings of NNNNNNNs. These are places where the assembler knows that the smaller contigs belong together but cannot fill in the small gap between them. Generally you want to work with contigs.fasta to avoid the runs of NNNNNNNs.</p>
+</div>
+<p>Your next step is to find and annotate the genes in these contigs, and we will use Prokka (<a href="https://protect-au.mimecast.com/s/krZGBwfrLKV3UW?domain=vicbioinformatics.com">https://protect-au.mimecast.com/s/krZGBwfrLKV3UW?domain=vicbioinformatics.com</a>) from Torsten Seeman at the Victorian Bioinformatics Consortium. Your next task is to run Prokka over the contigs.fasta file, getting it to find ORFs and their best matches in the UniProtKB protein database. Prokka is already installed on your prac systems.</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>prokka --outdir A7A_prokka --prefix A7A contigs.fasta
 </pre></div>
 </td></tr></table>
 Once Prokka has completed, look in the A7A_prokka directory and you will find the results files. For now, we will look at the GenBank format file (.gbk) and the summary table (.tbl).</p>
