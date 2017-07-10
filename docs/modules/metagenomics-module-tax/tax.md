@@ -175,7 +175,7 @@ If you look in this logfile you will note that ~40% of reads were filtered out f
     How many reads of sample 36CMK6WT were filtered out for not containing a match to the forward primer (which is the default setting in this case).
     
 !!! success "Answer"
-    88.96%
+    14
 
 ###Conversion to FASTA and removal of chimeric reads
 
@@ -204,13 +204,16 @@ By default the logfile "chimeraFilter_log.txt" is generated containing the count
     What is the mean percent of reads retained after this step, based on the output in the log file ("nonChimeraCallsPercent" column)?
 
 !!! success "Answer"
-    54.35%
+    87.6%
 
 !!! note "Question 4"
      What percent of stitched reads was retained for sample 75CMK8KO after all the filtering steps 
 
 !!! hint 
     "you will need to compare the original number of reads to the number of reads output by chimera_filter.pl)?"
+
+!!! success 
+    530 / 977 assembled/stitiched fastq  = 54.25%
 
 ### Assign samples to the reads
 
@@ -235,7 +238,7 @@ Now that the input file has been correctly formatted we can run the actual OTU p
 Several parameters for this program can be specified into a text file, which will be read in by "pick_open_reference_otus.py":
 
 ```bash
-echo "pick_otus:threads 1" >> clustering_params.txt
+echo "pick_otus:threads 4" >> clustering_params.txt
 echo "pick_otus:sortmerna_coverage 0.8" >> clustering_params.txt
 echo "pick_otus:sortmerna_db /mnt/workshop/data/97_otus" >> clustering_params.txt
 ```
@@ -246,7 +249,20 @@ We are actually also retaining singletons (i.e. OTUs identified by 1 read), whic
 
 ```bash
 pick_open_reference_otus.py -i $PWD/combined_fasta/combined_seqs.fna -o $PWD/clustering/ -p $PWD/clustering_params.txt -m sortmerna_sumaclust -s 0.1 -v --min_otu_size 1
-```  
+``` 
+
+!!! note 
+    pick open reference otus is a wrapper for a number of script that have the following functions: Pick Reference OTUs
+    Pick rep set
+    Merge OTU maps
+    Pick representative set for subsampled failures
+    Make the otu table
+    Assign taxonomy
+    Add taxa to OTU table
+    Align sequences
+    Filter alignment
+    Build phylogenetic tree
+   
 ###Remove low confidence OTUs
 We will now remove low confidence OTUs, i.e. those that are called by a low number of reads. It's difficult to choose a hard cut-off for how many reads are needed for an OTU to be confidently called, since of course OTUs are often at low frequency within a community. A reasonable approach is to remove any OTU identified by fewer than 0.1% of the reads, given that 0.1% is the estimated amount of sample bleed-through between runs on the Illumina Miseq:
 
@@ -269,22 +285,22 @@ The first four lines of clustering/otu_table_mc1_w_tax_no_pynast_failures_summar
 
 ```
 Num samples: 24
-Num observations: 2420
-Total count: 12014
-Table density (fraction of non-zero values): 0.097
-This means that for the 24 separate samples, 2420 OTUs were called based on 12014 reads. Only 9.7% of the values in the sample x OTU table are non-zero, meaning that most OTUs are in a small number of samples.
+Num observations: 2434
+Total count: 11831
+Table density (fraction of non-zero values): 0.096
+This means that for the 24 separate samples, 2434 OTUs were called based on 11831 reads. Only 9.7% of the values in the sample x OTU table are non-zero, meaning that most OTUs are in a small number of samples.
 ```
 
 In contrast, the first four lines of clustering/otu_table_high_conf_summary.txt are:
 
 ```
 Num samples: 24
-Num observations: 884
-Total count: 10478
-Table density (fraction of non-zero values): 0.193
+Num observations: 883
+Total count: 10280
+Table density (fraction of non-zero values): 0.192
 ```
 
-After removing low-confidence OTUs, only **36.5%** were retained: **the number of OTUs dropped from 2420 to 884**. This effect is generally even more drastic for bigger datasets. However, the numbers of reads only dropped from 12014 to 10478 (so **87% of the reads were retained**). You can also see that the table density increased, as we would expect.
+After removing low-confidence OTUs, only **36.5%** were retained: **the number of OTUs dropped from 2434 to 883**. This effect is generally even more drastic for bigger datasets. However, the numbers of reads only dropped from 11831 to 10280 (so **87% of the reads were retained**). You can also see that the table density increased, as we would expect.
 
 The pipeline creates a Newick-formatted phylogenetic
 tree **(*.tre)** in the clustering directory.
@@ -310,18 +326,18 @@ You can look at the read depth per sample in **clustering/otu_table_high_conf_su
 
 ```
 Counts/sample detail:
-106CHE6WT: 375.0
-111CHE6KO: 398.0
-39CMK6KO: 410.0
-113CHE6WT: 412.0
-108CHE6KO: 413.0
+116CHE6KO: 355.000
+106CHE6WT: 374.000
+110CHE6WT: 382.000
+113CHE6WT: 388.000
+111CHE6KO: 402.000
 ```
 
 !!! note "Question 5"
     What is the read depth for sample "75CMK8KO"?
 
 !!! success "Answer"
-    494
+    490
 
 We need to subsample the number of reads for each sample to the same depth, which is necessary for several downstream analyses. This is called **rarefaction**, a technique that provides an indication of **species richness** for a given number of samples. First it indicates if you have sequenced enough to identify all species. Second we want to rarify the read depth of samples to a similar number of reads for comparative analysis. There is actually quite a lot of debate about whether rarefaction is necessary (since it throws out data), but it is still the standard method used in microbiome studies. We want to rarify the read depth to the sample with the lowest "reasonable" number of reads. Of course, a "reasonable" read depth is quite subjective and depends on how much variation there is between samples.
 
@@ -340,11 +356,18 @@ We will now group sequences by taxonomic assignment at various levels. The follo
 summarize_taxa_through_plots.py -i final_otu_tables/otu_table.biom -o  wf_taxa_summary -m map.txt 
 ```
 
-To view the output, open a web browser from the Applications ->Internet menu. You can use Google chrome, Firefox or Chromium. In  Firefox use the File menu to select 
+To view the output, open a web browser from the Applications ->Internet menu. You can use Google chrome, Firefox or Chromium. 
+In  Firefox use the File menu to select either area_carts.html or bar_chars.html
 
+``` 
+~/Desktop/16S_chemerin_tutorial/wf_taxa_summary/taxa_summary_plots/bar_charts.html
+~/Desktop/16S_chemerin_tutorial/wf_taxa_summary/taxa_summary_plots/area_charts.html
 ```
-Desktop ->;Taxonomy ->; wf_taxa_summary ->; taxa_summary_plots 
-and open either area_charts.html or bar_chars.html. 
+
+Or launch firefox from the ommandline
+```
+firefox ~/Desktop/16S_chemerin_tutorial/wf_taxa_summary/taxa_summary_plots/bar_charts.html
+firefox ~/Desktop/16S_chemerin_tutorial/wf_taxa_summary/taxa_summary_plots/area_charts.html
 ```
 
 I prefer the bar charts myself. The top chart visualizes taxonomic composition at phylum level for each of the samples. The next chart goes down to class level and following charts go another level up again. The charts (particularly the ones more at the top) are very useful for discovering how the communities in your samples differ from each other. 
@@ -375,7 +398,7 @@ In general the more reads you have, the more OTUs you will observe. If a rarefac
 
 Run the following command from within your taxonomy directory, this should take a few minutes to generate a heatmap of the level three taxonomy:
 
-    make_otu_heatmap.py -i final_otu_tables/otu_table.biom -o final_otu_tables/otu_table_L3_heatmap.pdf -c Treatment -m map.txt
+    make_otu_heatmap.py -i final_otu_tables/otu_table.biom -o final_otu_tables/otu_table_L3_heatmap.pdf -c genotype -m map.txt
     
 
 ### Beta diversity and beta diversity plots
@@ -464,8 +487,8 @@ UniFrac is a particular beta-diversity measure that analyzes dissimilarity betwe
 QIIME "**beta_diversity_through_plots.py**" takes the OTU table as input, as well as file which contains the phylogenetic relatedness between all clustered OTUs. One HTML file will be generated for the weighted and unweighted beta diversity distances:
 
 ```
-plots/bdiv_otu_BZ/weighted_unifrac_emperor_pcoa_plot/index.html
-plots/bdiv_otu_BZ/unweighted_unifrac_emperor_pcoa_plot/index.html
+firefox plots/bdiv_otu_BZ/weighted_unifrac_emperor_pcoa_plot/index.html
+firefox plots/bdiv_otu_BZ/unweighted_unifrac_emperor_pcoa_plot/index.html
 ```
 
 Open the weighted HTML file in your browser and take a look, you should see a PCoA very similar to this:
@@ -515,7 +538,7 @@ Change the plot type to "Bar plot". Look at the barplot for Prevotella and save 
     Can you see how many genera are significant by clicking "Show only active features"?
 
 !!! success "Answer"
-    TBD
+    Prevotella, Odoribacter, Bacteroides, Allobaculum
 
 !!! note "*Bonus exercise*"
     Bonus exercise for fast learners.
@@ -525,7 +548,7 @@ Change the plot type to "Bar plot". Look at the barplot for Prevotella and save 
 The QIIME overview tutorial at
 (http://qiime.org/tutorials/tutorial.html) has a number of additional steps that you may find interesting; so feel free to try some of them out. Note hat we have not installed Cytoscape, so we cannot visualize OTU networks.
 
-We will end this tutorial with a summary of what we have done and how well our analysis compares with the one in the paper.
+We will end this tutorial with a summary of what we have done.
 
 Hopefully you will have acquired new skills that allow you to tackle your own taxonomic analyses. There are many more tutorials on the QIIME website that can help you pick the best strategy for your project (http://qiime.org/tutorials/) and https://github.com/mlangill/microbiome_helper/wiki/. There are alternatives that might suit your need better (e.g. VAMPS at http://vamps.mbl.ed>; mothur at http://www.mothur.org) and others.
 
