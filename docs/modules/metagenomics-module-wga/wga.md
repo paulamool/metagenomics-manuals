@@ -17,7 +17,7 @@ After completing this module the trainee should be able to:
 Spades.py :   
 
 ##Introduction
-------------
+---
 
 Performing genomic assembly aims at generating a genome-length sequence
 using the sequence information obtained from short reads. In the case of
@@ -27,7 +27,8 @@ sometimes very similar to each other. There are two main approaches to
 perform de novo assembly (genomic or metagenomic): building a consensus
 and generating De Bruijn k-mer graph.
 
-WGS Assembly and Annotation prac
+###WGS Assembly and Annotation prac
+---
 
 The A7A dataset is quite small by metagenomic standards, only about 52M reads, and from a simple and somewhat extreme environment. We have submitted A7A to the EBI Metagenomics pipeline (https://protect-au.mimecast.com/s/ZXg4BMh0dVnRtZ?domain=ebi.ac.uk), and in this pract session you will do some of the preparatory work for the later session where you will compare the results of any assembly-based approach to those that come from the EBI pipeline.
 
@@ -35,7 +36,7 @@ Even though A7A is relatively small, assembling the reads took about an hour wit
 
 The command used for the assembly was: 
 
-``bash
+```bash
 https://protect-au.mimecast.com/s/m4kKB2U1XWe4hD?domain=metaspades.py -o spades --pe1-1 DL3_GATCAG_L008_R1_001.fastq --pe1-2 DL3_GATCAG_L008_R2_001.fastq -m 64	
 ```
 	
