@@ -676,6 +676,7 @@ axis.text.y<span class="o">=</span>element_blank<span class="p">())</span>
 </pre></div>
 </td></tr></table>
 
+<p><img alt="Heat map of absolute InterproScan hit counts throughout treatment" src="../images/IPR-Abs-heat.png" /></p>
 <h3 id="4-go-all-category-relative-occurence-during-treatment">4. GO (all category): relative occurence during treatment.<a class="headerlink" href="#4-go-all-category-relative-occurence-during-treatment" title="Permanent link">&para;</a></h3>
 <p>The goal here is to create a composite plot of all GO category occurence during treatments. Give meaningful names to conditions as for the taxonomic case</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -751,6 +752,7 @@ theme<span class="p">(</span>legend.position<span class="o">=</span><span class=
 </pre></div>
 </td></tr></table>
 
+<p><img alt="Barplot of relative abundance of all GO terms" src="../images/GO-Bar.png" /></p>
 <h3 id="50-correspondance-analysisis-of-the-contingency-tables">5.0 Correspondance Analysisis of the contingency tables.<a class="headerlink" href="#50-correspondance-analysisis-of-the-contingency-tables" title="Permanent link">&para;</a></h3>
 <p>The goal of this analysis is to elucidate the relationship between species and GO terms with respect to various treatment conditions (days).
 We will make use of the variable created above.</p>
@@ -860,11 +862,39 @@ myscree<span class="p">(</span>taxonomy.coa<span class="o">$</span>eig <span cla
 </pre></div>
 </td></tr></table>
 
+<p><img alt="Correspondence Analysis: Metagenomics Taxonomy abundance" src="../images/CA-G.png" /></p>
 <h3 id="51-perform-a-correspondence-analysis-on-the-metatranscriptomic-data">5.1 Perform a Correspondence analysis on the Metatranscriptomic data<a class="headerlink" href="#51-perform-a-correspondence-analysis-on-the-metatranscriptomic-data" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>taxonomy.coa <span class="o">&lt;-</span> dudi.coa<span class="p">(</span>taxonomy.rna<span class="p">,</span> scannf<span class="o">=</span><span class="bp">F</span><span class="p">,</span> nf<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+taxonomy.rna.plot <span class="o">&lt;-</span> setup.plot <span class="o">+</span> geom_point<span class="p">(</span>data<span class="o">=</span><span class="kt">data.frame</span><span class="p">(</span>taxonomy.coa<span class="o">$</span>li<span class="p">,</span> data.rna<span class="p">),</span>
+aes<span class="p">(</span>x<span class="o">=</span>Axis1<span class="p">,</span> y<span class="o">=</span>Axis2<span class="p">,</span> col<span class="o">=</span>days<span class="p">,</span> shape<span class="o">=</span>days<span class="p">,</span> size<span class="o">=</span><span class="m">3</span><span class="p">))</span> <span class="o">+</span>
+geom_text<span class="p">(</span>data<span class="o">=</span>taxonomy.coa<span class="o">$</span>co<span class="p">,</span>
+aes<span class="p">(</span>x<span class="o">=</span>Comp1<span class="p">,</span> y<span class="o">=</span>Comp2<span class="p">,</span> label<span class="o">=</span><span class="kp">rownames</span><span class="p">(</span>taxonomy.coa<span class="o">$</span>co<span class="p">)),</span>
+position <span class="o">=</span> <span class="s">&quot;jitter&quot;</span><span class="p">,</span> alpha<span class="o">=</span><span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+scale_size_area<span class="p">(</span>breaks<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">11</span><span class="p">,</span><span class="m">14</span><span class="p">,</span><span class="m">40</span><span class="p">))</span> <span class="o">+</span>
+scale_shape<span class="p">(</span>solid<span class="o">=</span><span class="bp">F</span><span class="p">)</span> <span class="o">+</span>
+labs<span class="p">(</span>title<span class="o">=</span><span class="s">&quot;Correspondence Analysis: Metatranscriptomic\nTaxonomy abundance&quot;</span><span class="p">)</span> <span class="o">+</span>
+theme_light<span class="p">()</span>
+taxonomy.rna.plot
+myscree<span class="p">(</span>taxonomy.coa<span class="o">$</span>eig <span class="o">/</span> <span class="kp">sum</span><span class="p">(</span>taxonomy.coa<span class="o">$</span>eig<span class="p">))</span>
+</pre></div>
+</td></tr></table>
+
+<p><img alt="Correspondence Analysis: Metatranscriptomic Taxonomy abundance" src="../images/CA-T.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Question</p>
-</div>
 <p>What can you conclude despite the very sparse data?</p>
+</div>
 <p>Merge taxonomic and GO_slim_abundances for correspondence analysis._
 Organise the taxonomy data</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
